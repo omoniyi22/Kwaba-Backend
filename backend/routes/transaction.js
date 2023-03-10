@@ -8,7 +8,7 @@ const TransactionRoutes = async (router) => {
 
   await
     router.route("/transactions")
-      .get(Auth.verifyToken, TransactionController.getAllTransactions);
+      .get(TransactionController.getAllTransactions);
 };
 
 module.exports = TransactionRoutes;

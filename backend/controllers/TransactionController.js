@@ -47,8 +47,6 @@ const TransactionController = {
 
   async getAllTransactions(req, res) {
     try {
-      console.log({ user: req.user })
-      let email = req.user.email
       const allTransactions = await Transaction.find();
       await res.status(200).json({
         msg: "Fetched successfully",
