@@ -15,8 +15,6 @@ const TransactionController = {
         if (event && event.event && event.data) {
           let data = event.data
 
-          console.log({ data: data.customer })
-
           let transactionData = {
             status: data.status,
             paystackId: data.id,
@@ -43,6 +41,7 @@ const TransactionController = {
         msg: "An error occured",
         err: error,
       });
+      console.log({ error })
     }
   },
 
