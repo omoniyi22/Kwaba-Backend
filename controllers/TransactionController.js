@@ -46,10 +46,22 @@ const TransactionController = {
     }
   },
 
+
   async getTransactions(req, res) {
-
+    try {
+      const allTransactions = await Transaction.find();
+      await res.status(200).json({
+        msg: "Fetched successfully",
+        data: allTransactions,
+      });
+    } catch (error) {
+      res.status(500).json({
+        msg: "An error occured",
+        error
+      });
+      console.log({ error })
+    }
   }
-
 }
 
 module.exports = TransactionController;
