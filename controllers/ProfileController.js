@@ -121,6 +121,7 @@ const ProfileController = {
           msg: "Successfully registered, we will get back to you",
           data,
         });
+        console.log({ user: data })
       } catch (error) {
         console.log(error);
         res.status(400).send({
