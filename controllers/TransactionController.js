@@ -37,11 +37,11 @@ const TransactionController = {
 
       }
     } catch (error) {
+      console.log({ error })
       res.status(500).send({
         msg: "An error occured",
         err: error,
       });
-      console.log({ error })
     }
   },
 
