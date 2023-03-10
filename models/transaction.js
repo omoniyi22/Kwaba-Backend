@@ -1,15 +1,27 @@
 const { model, Schema } = require('mongoose')
 
 const salesModel = new Schema({
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: "products"
+  paystackId: {
+    type: Number,
+    required: true,
   },
-  profile: {
-    type: Schema.Types.ObjectId,
-    ref: "profiles"
+  
+  reference: {
+    type: String
   },
-  amount: Number
-})
+
+  amount: {
+    type: Number
+  },
+
+  method: {
+    type: String
+  },
+
+  paidAt: {
+    type: String
+  }
+
+}, { timestamps: true })
 
 module.exports = model("sales", salesModel)

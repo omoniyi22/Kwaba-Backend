@@ -13,8 +13,20 @@ const TransactionController = {
       if (hash == req.headers['x-paystack-signature']) {
         // Retrieve the request's body
         const event = req.body;
-        console.log({ event })
         // Do something with event  
+        if (event && event.event && event.data) {
+          let data = event.data
+
+          console.log({ data: data.customer })
+
+          let status = data.status
+          let paystackId = data.id
+          let reference = data.reference
+          let amount = data.amount
+          let method = data.channel
+          let paidAt = data.paid_at
+
+        }
       }
       res.send(200);
     } catch (error) {
