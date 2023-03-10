@@ -47,14 +47,14 @@ const TransactionController = {
 
   async getAllTransactions(req, res) {
     try {
-      console.log({ user: req.user })
-      let email = req.user.email
-      const allTransactions = await Transaction.find();
+      let email = req.params.email
+      const allTransactions = await Transaction.find({ email });
       await res.status(200).json({
         msg: "Fetched successfully",
         data: allTransactions,
       });
     } catch (error) {
+      console.log({ error })
       res.status(500).json({
         msg: "An error occured",
         error

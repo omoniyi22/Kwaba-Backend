@@ -4,12 +4,14 @@ const transactionModel = new Schema({
 
   name: {
     type: String,
-    required: true
+    required: true,
+
   },
 
   email: {
     type: String,
-    required: true
+    required: true, 
+    unique: true
   },
 
   paystackId: {

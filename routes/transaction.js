@@ -7,7 +7,7 @@ const TransactionRoutes = async (router) => {
     .post(TransactionController.webHook);
 
   await
-    router.route("/transactions")
+    router.route("/transactions/:email")
       .get(Auth.verifyToken, TransactionController.getAllTransactions);
 };
 
