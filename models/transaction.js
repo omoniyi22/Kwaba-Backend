@@ -1,27 +1,37 @@
 const { model, Schema } = require('mongoose')
 
-const salesModel = new Schema({
-  paystackId: {
-    type: Number,
-    required: true,
+const transactionModel = new Schema({
+
+  name: {
+    type: String,
+    required: true
   },
-  
+
+  email: {
+    type: String,
+    required: true
+  },
+
   reference: {
-    type: String
+    type: String,
+    required: true
   },
 
   amount: {
-    type: Number
+    type: Number,
+    required: true
   },
 
   method: {
-    type: String
+    type: String,
+    required: true
   },
 
   paidAt: {
-    type: String
+    type: String,
+    required: true
   }
 
 }, { timestamps: true })
 
-module.exports = model("sales", salesModel)
+module.exports = model("transaction", transactionModel)

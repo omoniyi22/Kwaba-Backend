@@ -1,13 +1,11 @@
 var crypto = require('crypto');
 var secret = process.env.PAYSTACK_SECRET_KEY;
-
+var Transaction = require('./../models/transaction')
 
 const TransactionController = {
   async webHook(req, res) {
 
-    console.log({ there: "there", req })
     //validate event
-
     try {
       const hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
       if (hash == req.headers['x-paystack-signature']) {
@@ -19,19 +17,31 @@ const TransactionController = {
 
           console.log({ data: data.customer })
 
-          let status = data.status
-          let paystackId = data.id
-          let reference = data.reference
-          let amount = data.amount
-          let method = data.channel
-          let paidAt = data.paid_at
+          let transactionData = {
+            status: data.status,
+            paystackId: data.id,
+            reference: data.reference,
+            amount: data.amount,
+            method: data.channel,
+            paidAt: data.paid_at,
+            email: data.customer.email,
+            name: data.customer.first_name + " " + data.customer.last_name,
+          }
 
+          let newTransaction = new Transaction(transactionData);
+          let savedTransaction = await newTransaction.save();
+          console.log({ savedTransaction })
+          res.status(201).json({
+            msg: `Project created successfully`,
+            data: savedTransaction,
+          });
         }
+
       }
-      res.send(200);
     } catch (error) {
-      res.status(400).json({
-        msg: error,
+      res.status(500).send({
+        msg: "An error occured",
+        err: error,
       });
     }
   },
