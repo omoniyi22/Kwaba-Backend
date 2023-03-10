@@ -4,6 +4,8 @@ var secret = process.env.PAYSTACK_SECRET_KEY;
 
 const TransactionController = {
   async webHook(req, res) {
+
+    console.log({ there: "there", req })
     //validate event
 
     try {

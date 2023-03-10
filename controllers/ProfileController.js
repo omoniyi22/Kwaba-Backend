@@ -92,10 +92,15 @@ const ProfileController = {
     if (error) res.status(400).json({ msg: error.details[0].message });
     else
       try {
+
+
+
         let user_profile = await Profile.findById(req.params.id);
+        console.log({ info: req.body, user_profile })
 
         user_profile.income =
           (await income) !== null ? income : user_profile.income || 0;
+
         user_profile.payment_duration =
           (await payment_duration) !== null
             ? payment_duration

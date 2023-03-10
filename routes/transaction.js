@@ -3,10 +3,10 @@ const { Auth } = require("./../middlewares/Auth");
 
 const TransactionRoutes = async (router) => {
   await router
-    .route("/transaction")
-    .post(Auth.verifyToken, TransactionController.webHook);
+    .route("/transactions/paystack_webhook")
+    .post(TransactionController.webHook);
 
-  await router.route("/transaction/paystack_webhook").get(TransactionController.getTransactions);
+  await router.route("/transactions").get(TransactionController.getTransactions);
 };
 
 module.exports = TransactionRoutes;
